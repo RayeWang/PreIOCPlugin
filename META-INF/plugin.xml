@@ -1,0 +1,43 @@
+<idea-plugin version="2">
+    <id>eu.inmite.android.plugin.preioc</id>
+    <name>Android Preioc Plugin</name>
+    <version>1.0.0</version>
+    <vendor email="admin@raye.wang" url="http://github.com/rayewang">rayewang</vendor>
+
+    <description><![CDATA[
+      Plugin for generating PreIOC injections from selected layout XMLs in activities/fragments/adapters.
+      ]]></description>
+
+    <change-notes><![CDATA[
+<html>
+<b>PreIOC 1.0.6 plugin</b>
+</html>
+      ]]></change-notes>
+
+    <idea-version since-build="123.72"/>
+
+    <!-- please see http://confluence.jetbrains.net/display/IDEADEV/Plugin+Compatibility+with+IntelliJ+Platform+Products
+                   on how to target different products -->
+    <depends>com.intellij.modules.lang</depends>
+
+    <actions>
+        <action id="AddInjectionsAction"
+                class="wang.raye.android.preiocplugin.InjectAction"
+                text="Generate PreIOC Injections"
+                description="Plugin for generating PreIOC injections from selected layout XMLs in activities/fragments/adapters">
+
+            <keyboard-shortcut
+                    keymap="$default"
+                    first-keystroke="shift control B"/>
+            <add-to-group group-id="GenerateGroup"  anchor="last"/>
+            <!-- <add-to-group group-id="ProjectViewPopupMenu" /> file pop-up -->
+        </action>
+
+    </actions>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <applicationConfigurable instance="wang.raye.android.preiocplugin.Settings" />
+        <codeInsight.lineMarkerProvider language="JAVA"
+                                        implementationClass="wang.raye.android.preiocplugin.navgation.NavigationMarkerProvider" />
+    </extensions>
+</idea-plugin>
